@@ -6,22 +6,15 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.amqp.core.Queue;
-import org.springframework.amqp.rabbit.annotation.RabbitListener;
-import org.springframework.amqp.rabbit.connection.RabbitUtils;
-import org.springframework.amqp.rabbit.core.RabbitAdmin;
-import org.springframework.amqp.rabbit.core.RabbitMessagingTemplate;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
-import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
-import java.net.http.HttpRequest;
 
 @RestController
 @RequestMapping("/api/v1/product")
