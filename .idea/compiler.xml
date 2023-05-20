@@ -12,7 +12,6 @@
         <module name="discoveryserver" />
         <module name="store" />
         <module name="gateway" />
-        <module name="gatewayapi" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

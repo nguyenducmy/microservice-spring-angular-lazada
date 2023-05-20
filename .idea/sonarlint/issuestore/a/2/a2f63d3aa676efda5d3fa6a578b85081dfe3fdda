@@ -1,0 +1,9 @@
+
+Q	java:S125"<This block of commented-out lines of code should be removed.(í°úï
+k
+java:S3305"PInject this field value directly into "configure", the only method that uses it.(çœÃ›úÿÿÿÿ
+X
+java:S1874/"BRemove this use of "withDefaultPasswordEncoder"; it is deprecated.(¿•¿
+V	java:S1258"<This block of commented-out lines of code should be removed.(íìŠøûÿÿÿÿ
+n
+java:S1128"XRemove this unused import 'org.springframework.security.config.Customizer.withDefaults'.(ÃÒş†

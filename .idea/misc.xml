@@ -6,7 +6,6 @@
         <option value="$PROJECT_DIR$/authenticate/pom.xml" />
         <option value="$PROJECT_DIR$/discoveryserver/pom.xml" />
         <option value="$PROJECT_DIR$/gateway/pom.xml" />
-        <option value="$PROJECT_DIR$/gatewayapi/pom.xml" />
         <option value="$PROJECT_DIR$/notification/pom.xml" />
         <option value="$PROJECT_DIR$/product/pom.xml" />
         <option value="$PROJECT_DIR$/store/pom.xml" />
