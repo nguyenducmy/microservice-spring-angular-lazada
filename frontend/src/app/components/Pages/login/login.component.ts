@@ -34,5 +34,4 @@ export class LoginComponent implements OnInit {
       console.log("object mapping result is - " + this.authenResponse.getJwtToken);
     });
   }
-
 }
