@@ -4,8 +4,8 @@ import { HomeComponent } from './components/Pages/home/home.component';
 import { LoginComponent } from './components/Pages/login/login.component';
 import { PartnerInfoComponent } from './components/Pages/partner-info/partner-info.component';
 
-const routes: Routes = 
-[ 
+const routes: Routes =
+[
   {path: '', component: HomeComponent},
   {path: 'login', component: LoginComponent},
   {path: 'home', component: HomeComponent},

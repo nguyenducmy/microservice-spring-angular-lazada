@@ -5,6 +5,7 @@ import {HttpServerServiceService} from "../../../services/http-server-service.se
 import {Authen} from 'src/app/models/authen';
 import {Staff} from "../../../models/staff";
 import {AuthenResponse} from "../../../models/authen-response";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -15,10 +16,11 @@ export class LoginComponent implements OnInit {
   public username: string | undefined;
   public password: string | undefined;
   public response: string | null | undefined;
+  public loginWarning: string | null | undefined;
   authenResponse: AuthenResponse | null | undefined;
   public authenticateUrl: string = "http://localhost:8088/api/v1/authen/login";
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
   }
 
 
@@ -32,6 +34,12 @@ export class LoginComponent implements OnInit {
       console.log(res);
       this.authenResponse = new AuthenResponse(res);
       console.log("object mapping result is - " + this.authenResponse.getJwtToken);
+      if (this.authenResponse.getCode === '200') {
+        this.router.navigate(['home']);
+      }else{
+        this.router.navigate(['login'])
+        this.loginWarning = 'Login Failed , Please try again';
+      }
     });
   }
 }

@@ -20,7 +20,7 @@ public class api {
     UserRepository userRepository;
 
     @PostMapping("/register")
-    public ResponseEntity<BaseResponse> register(@RequestBody User user){
+    public ResponseEntity<BaseResponse> register(@RequestBody User user) {
         String password = new BCryptPasswordEncoder().encode(user.getPassword());
         user.setPassword(password);
         userRepository.save(user);
@@ -29,18 +29,24 @@ public class api {
         baseResponse.setStatus("Register Done");
         return ResponseEntity.ok(baseResponse);
     }
+
     @PostMapping("/login")
-    public ResponseEntity<BaseResponse> login(@RequestBody UserDto userDto){
+    public ResponseEntity<BaseResponse> login(@RequestBody UserDto userDto) {
         User user = userRepository.findByUsername(userDto.getUsername()).orElseThrow();
         var jwt = "";
-        if(user.getUsername().equals(userDto.getUsername())
-                && new BCryptPasswordEncoder().matches(userDto.getPassword(), user.getPassword())){
-            jwt = jwtService.generate(userDto.getUsername());
-        }
         var baseResponse = new BaseResponse();
-        baseResponse.setStatus("Login Successfull");
-        baseResponse.setCode("200");
-        baseResponse.setObject(jwt);
+        if (user.getUsername().equals(userDto.getUsername())
+                && new BCryptPasswordEncoder().matches(userDto.getPassword(), user.getPassword())) {
+            jwt = jwtService.generate(userDto.getUsername());
+            baseResponse.setStatus("Login Successfully");
+            baseResponse.setCode("200");
+            baseResponse.setObject(jwt);
+        } else {
+            baseResponse.setCode("403");
+            baseResponse.setStatus("UnAuthorization");
+            baseResponse.setObject("N/A");
+        }
+
         return ResponseEntity.ok(baseResponse);
     }
 }

@@ -11,4 +11,7 @@ export class AuthenResponse {
   get getJwtToken():string{
     return <string>this.object;
   }
+  get getCode():string{
+    return <string>this.code;
+  }
 }
