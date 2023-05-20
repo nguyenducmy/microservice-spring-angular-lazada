@@ -26,15 +26,12 @@ export class LoginComponent implements OnInit {
   }
 
   public onSubmit() {
-    console.log(this.username);
-    console.log(this.password);
     const authen: Authen = new Authen(this.username, this.password);
-    console.log(authen);
-    this.http.post(this.authenticateUrl, authen).subscribe((res: any) => {
+    // @ts-ignore
+    this.http.post(this.authenticateUrl, authen).subscribe((res: AuthenResponse) => {
       console.log(res);
-     this.authenResponse = res;
-     console.log(this.authenResponse);
-
+      this.authenResponse = new AuthenResponse(res);
+      console.log("object mapping result is - " + this.authenResponse.getJwtToken);
     });
   }
 
