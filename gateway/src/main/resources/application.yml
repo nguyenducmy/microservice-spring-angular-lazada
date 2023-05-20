@@ -8,6 +8,7 @@ spring:
           uri: lb://PRODUCT-SERVICE
           predicates:
             - Path=/api/v1/product/**
+            - Path=/api/v1/category/**
           filters:
             - AuthenticationFilter
         - id: STORE-SERVICE

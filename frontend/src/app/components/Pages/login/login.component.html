@@ -3,8 +3,8 @@
     <div class="login-form">
       <h2  style="color:white"><img style="height:100px"src="	https://corsivalabpartnerportal-prelive.azurewebsites.net/images/logo.jpg"/></h2>
       <br/><br/>
-      <form (ngSubmit)="onSubmit()">
-        <p style="color: red;font-family:arial;font-size:14px;" th:text="${errorLogin}"></p>
+      <form  (ngSubmit)="onSubmit()">
+        <p style="color: red;font-family:arial;font-size:14px;" text="${errorLogin}"></p>
         <label  class="form-label">Username</label>
         <!--/*@thymesVar id="username" type=""*/-->
         <input  type="text" [(ngModel)]="username" name="username" class="form-control" aria-describedby="helpId">
