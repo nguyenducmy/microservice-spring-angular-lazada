@@ -1,4 +1,4 @@
-import { AuthenResponse } from './authen-response';
+import {AuthenResponse} from './authen-response';
 
 describe('AuthenResponse', () => {
   it('should create an instance', () => {

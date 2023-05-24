@@ -1,12 +1,22 @@
 package com.example.product.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class ProductRequest {
-    private String brand;
-    private String name;
+    private String category;
+    private String title;
+    private String price;
+    private String describe;
+    @JsonIgnore
+    private MultipartFile image;
 
 }

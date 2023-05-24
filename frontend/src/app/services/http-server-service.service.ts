@@ -1,15 +1,13 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 /**
  * import manual
  *
  *
  */
- import {HttpClient, HttpHeaders} from '@angular/common/http';
- import {Observable,of} from 'rxjs';
-import { Product } from '../models/product';
-import { Staff } from '../models/staff';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Observable} from 'rxjs';
 
- /**
+/**
   * add header
   */
  const httpOptions ={

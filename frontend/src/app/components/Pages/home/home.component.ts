@@ -1,8 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Currency } from 'src/app/models/currency';
-import { Product } from 'src/app/models/product';
-import { Staff } from 'src/app/models/staff';
-import { HttpServerServiceService } from 'src/app/services/http-server-service.service';
+import {Component, OnInit} from '@angular/core';
+import {Staff} from 'src/app/models/staff';
+import {HttpServerServiceService} from 'src/app/services/http-server-service.service';
 
 @Component({
   selector: 'app-home',
@@ -20,12 +18,12 @@ export class HomeComponent implements OnInit {
 
   // body
   ngOnInit(): void {
-    
+
     this.httpServerService.getAll(this.getStaffInfoUrl).subscribe((res:any)=>{
         this.staffs = res;
         console.log(this.staffs);
-        
+
     })
   };
-  
+
 }

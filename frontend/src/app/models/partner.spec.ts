@@ -1,4 +1,4 @@
-import { Partner } from './partner';
+import {Partner} from './partner';
 
 describe('Partner', () => {
   it('should create an instance', () => {

@@ -1,5 +1,5 @@
-import { createLocal } from '../create/local';
-import { cloneWithOffset } from '../units/offset';
+import {createLocal} from '../create/local';
+import {cloneWithOffset} from '../units/offset';
 import isFunction from '../utils/is-function';
 
 export function calendar (time, formats) {

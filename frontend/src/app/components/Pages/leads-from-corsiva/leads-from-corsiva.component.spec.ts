@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { LeadsFromCorsivaComponent } from './leads-from-corsiva.component';
+import {LeadsFromCorsivaComponent} from './leads-from-corsiva.component';
 
 describe('LeadsFromCorsivaComponent', () => {
   let component: LeadsFromCorsivaComponent;

@@ -1,15 +1,15 @@
-import { get } from '../moment/get-set';
+import {get} from '../moment/get-set';
 import hasOwnProp from '../utils/has-own-prop';
-import { addFormatToken } from '../format/format';
-import { addUnitAlias } from './aliases';
-import { addRegexToken, match1to2, match2, matchWord, regexEscape } from '../parse/regex';
-import { addParseToken } from '../parse/token';
-import { hooks } from '../utils/hooks';
-import { MONTH } from './constants';
+import {addFormatToken} from '../format/format';
+import {addUnitAlias} from './aliases';
+import {addRegexToken, match1to2, match2, matchWord, regexEscape} from '../parse/regex';
+import {addParseToken} from '../parse/token';
+import {hooks} from '../utils/hooks';
+import {MONTH} from './constants';
 import toInt from '../utils/to-int';
 import isArray from '../utils/is-array';
 import indexOf from '../utils/index-of';
-import { createUTC } from '../create/utc';
+import {createUTC} from '../create/utc';
 import getParsingFlags from '../create/parsing-flags';
 
 export function daysInMonth(year, month) {

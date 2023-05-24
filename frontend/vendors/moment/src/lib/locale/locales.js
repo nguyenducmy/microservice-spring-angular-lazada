@@ -1,9 +1,9 @@
 import isArray from '../utils/is-array';
 import isUndefined from '../utils/is-undefined';
 import compareArrays from '../utils/compare-arrays';
-import { deprecateSimple } from '../utils/deprecate';
-import { mergeConfigs } from './set';
-import { Locale } from './constructor';
+import {deprecateSimple} from '../utils/deprecate';
+import {mergeConfigs} from './set';
+import {Locale} from './constructor';
 import keys from '../utils/keys';
 
 // internal storage for locale config files

@@ -46,4 +46,5 @@ public class AppConfig {
         rabbitTemplate.setMessageConverter(converter());
         return rabbitTemplate;
     }
+
 }

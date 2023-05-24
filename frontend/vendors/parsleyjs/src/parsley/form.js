@@ -1,5 +1,4 @@
 import $ from 'jquery';
-import ParsleyAbstract from './abstract';
 import ParsleyUtils from './utils';
 
 var ParsleyForm = function (element, domOptions, options) {

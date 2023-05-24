@@ -2,8 +2,10 @@ package com.example.product.controller;
 
 import com.example.product.config.AppConfig;
 import com.example.product.dto.ProductRequest;
+import com.example.product.service.FileService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -14,10 +16,18 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.LinkedHashSet;
+import java.util.Map;
 
 
 @RestController
 @RequestMapping("/api/v1/product")
+@CrossOrigin(origins = "http://localhost:4200")
 public class api {
     @Autowired
     RestTemplate restTemplate;
@@ -31,6 +41,8 @@ public class api {
 
     @Autowired
     ObjectMapper om;
+    @Autowired
+    FileService fileService;
 
     @GetMapping("/get-products")
     public String getProducts(){
@@ -46,9 +58,12 @@ public class api {
     }
 
     @PostMapping("/add-product")
-    public String addProduct(@RequestBody ProductRequest productRequest) throws JsonProcessingException {
-        String json = om.writeValueAsString(productRequest);
-        rabbitTemplate.convertAndSend(AppConfig.EXCHANGE, AppConfig.ROUTING_KEY,json);
+    public String addProduct(HttpServletRequest request) throws IOException, ServletException {
+        Map<String, String[]> category = request.getParameterMap();
+        String productRequest =  Arrays.stream(category.get("body")).findFirst().get();
+        System.out.println(productRequest);
+        ProductRequest product = om.readValue(productRequest, ProductRequest.class);
+        fileService.uploadFileService(request);
         return "Product Added";
     }
 

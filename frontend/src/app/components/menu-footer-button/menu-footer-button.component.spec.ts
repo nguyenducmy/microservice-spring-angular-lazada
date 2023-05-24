@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { MenuFooterButtonComponent } from './menu-footer-button.component';
+import {MenuFooterButtonComponent} from './menu-footer-button.component';
 
 describe('MenuFooterButtonComponent', () => {
   let component: MenuFooterButtonComponent;

@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { LatestBrochureComponent } from './latest-brochure.component';
+import {LatestBrochureComponent} from './latest-brochure.component';
 
 describe('LatestBrochureComponent', () => {
   let component: LatestBrochureComponent;

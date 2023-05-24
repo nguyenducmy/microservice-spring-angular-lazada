@@ -1,4 +1,4 @@
-import { Authen } from './authen';
+import {Authen} from './authen';
 
 describe('Authen', () => {
   it('should create an instance', () => {
