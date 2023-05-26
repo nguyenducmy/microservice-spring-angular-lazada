@@ -20,14 +20,14 @@ import java.util.Map;
 import java.util.UUID;
 
 @Service
-public class FileService {
+public class ProductService {
     private final String ROOT_PATH = "src/main/resources/images/";
     @Autowired
     ObjectMapper om;
     @Autowired
     ProductRepository productRepository;
 
-    public void uploadFileService(HttpServletRequest request) throws IOException {
+    public void addProductService(HttpServletRequest request) throws IOException {
         Map<String, String[]> category = request.getParameterMap();
         String productRequest = Arrays.stream(category.get("body")).findFirst().get();
         System.out.println(productRequest);

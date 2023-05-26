@@ -1,11 +1,7 @@
 package com.example.product.controller;
 
-import com.example.product.config.AppConfig;
-import com.example.product.dto.ProductRequest;
-import com.example.product.entity.Product;
 import com.example.product.repository.ProductRepository;
-import com.example.product.service.FileService;
-import com.fasterxml.jackson.core.JsonProcessingException;
+import com.example.product.service.ProductService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -49,7 +45,7 @@ public class api {
     @Autowired
     ProductRepository productRepository;
     @Autowired
-    FileService fileService;
+    ProductService productService;
 
     @GetMapping("/get-products")
     public String getProducts(){
@@ -66,12 +62,12 @@ public class api {
 
     @PostMapping("/add-product")
     public ResponseEntity<String> addProduct(HttpServletRequest request) throws IOException, ServletException {
-        fileService.uploadFileService(request);
+        productService.addProductService(request);
         return ResponseEntity.ok("Product Added Successfully");
     }
     @PatchMapping("/edit-product")
     public ResponseEntity<String> editProduct(HttpServletRequest request) throws IOException {
-        fileService.editProductService(request);
+        productService.editProductService(request);
         return ResponseEntity.ok("Edit Successfully");
     }
 }
