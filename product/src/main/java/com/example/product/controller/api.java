@@ -2,6 +2,8 @@ package com.example.product.controller;
 
 import com.example.product.config.AppConfig;
 import com.example.product.dto.ProductRequest;
+import com.example.product.entity.Product;
+import com.example.product.repository.ProductRepository;
 import com.example.product.service.FileService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -20,9 +22,11 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.Map;
+import java.util.Optional;
 
 
 @RestController
@@ -41,6 +45,9 @@ public class api {
 
     @Autowired
     ObjectMapper om;
+
+    @Autowired
+    ProductRepository productRepository;
     @Autowired
     FileService fileService;
 
@@ -58,13 +65,13 @@ public class api {
     }
 
     @PostMapping("/add-product")
-    public String addProduct(HttpServletRequest request) throws IOException, ServletException {
-        Map<String, String[]> category = request.getParameterMap();
-        String productRequest =  Arrays.stream(category.get("body")).findFirst().get();
-        System.out.println(productRequest);
-        ProductRequest product = om.readValue(productRequest, ProductRequest.class);
+    public ResponseEntity<String> addProduct(HttpServletRequest request) throws IOException, ServletException {
         fileService.uploadFileService(request);
-        return "Product Added";
+        return ResponseEntity.ok("Product Added Successfully");
     }
-
+    @PatchMapping("/edit-product")
+    public ResponseEntity<String> editProduct(HttpServletRequest request) throws IOException {
+        fileService.editProductService(request);
+        return ResponseEntity.ok("Edit Successfully");
+    }
 }

@@ -18,6 +18,7 @@ import {LeadsFromCorsivaComponent} from './components/Pages/leads-from-corsiva/l
 import {LeadsToCorsivaComponent} from './components/Pages/leads-to-corsiva/leads-to-corsiva.component';
 import {LoginComponent} from './components/Pages/login/login.component';
 import { AddProductComponent } from './components/Pages/add-product/add-product.component';
+import { EditProductComponent } from './components/Pages/edit-product/edit-product.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { AddProductComponent } from './components/Pages/add-product/add-product.
     LeadsToCorsivaComponent,
     LoginComponent,
     AddProductComponent,
+    EditProductComponent,
   ],
   imports: [
     BrowserModule,

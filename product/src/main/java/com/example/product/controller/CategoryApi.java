@@ -2,12 +2,10 @@ package com.example.product.controller;
 
 import com.example.product.entity.Category;
 import com.example.product.repository.CategoryRepository;
-import com.netflix.discovery.converters.Auto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
