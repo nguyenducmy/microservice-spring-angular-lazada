@@ -21,12 +21,18 @@ public class api {
 
     @PostMapping("/register")
     public ResponseEntity<BaseResponse> register(@RequestBody User user) {
-        String password = new BCryptPasswordEncoder().encode(user.getPassword());
-        user.setPassword(password);
-        userRepository.save(user);
+        User isUser = userRepository.findByUsername(user.getUsername()).orElseThrow();
         BaseResponse baseResponse = new BaseResponse();
-        baseResponse.setCode("200");
-        baseResponse.setStatus("Register Done");
+        if(isUser == null){
+            String password = new BCryptPasswordEncoder().encode(user.getPassword());
+            user.setPassword(password);
+            userRepository.save(user);
+            baseResponse.setCode("200");
+            baseResponse.setStatus("Register Done");
+        }else{
+            baseResponse.setCode("200");
+            baseResponse.setStatus("User Existed");
+        }
         return ResponseEntity.ok(baseResponse);
     }
 
