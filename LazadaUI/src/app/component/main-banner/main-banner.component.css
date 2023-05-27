@@ -1,0 +1,29 @@
+#main-banner{
+  display: block;
+  width: 100%;
+  position: static;
+  margin: auto;
+  background-color: white;
+  height: 400px;
+}
+#main-banner ul li{
+  list-style: none;
+}
+#side-menu-bar {
+  width: 25%;
+  font-size: 15px;
+  float: left;
+  background-color: white;
+  z-index: 1;
+}
+#side-menu-bar ul li{
+  list-style: none;
+  margin-top: 5px;
+}
+#banner{
+  width: 75%;
+  float: left;
+  background-color: deeppink;
+  z-index: 0;
+}
+
