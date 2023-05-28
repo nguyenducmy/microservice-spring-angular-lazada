@@ -12,6 +12,7 @@
 
 #header ul {
   float: right;
+  margin-left: -100px;
 }
 #sub-header{
   background-color: white;
