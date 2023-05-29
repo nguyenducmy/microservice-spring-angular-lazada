@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {calendar} from "../../../../vendors/moment/moment";
 import {Product} from "../../../models/product";
 import {DomSanitizer, SafeResourceUrl, SafeUrl} from '@angular/platform-browser';
+import {PageProductRequest} from "../../../models/page-product-request";
 
 @Component({
   selector: 'app-product',
@@ -15,50 +16,74 @@ export class ProductComponent implements OnInit {
   public imageShow: any;
   price: string | undefined;
   products: Product[] | undefined;
+  pageSize: number[] | undefined;
+  pageOnClick: string | undefined;
+  currentState: any | undefined;
+  pageId: string | undefined;
   private readonly imageType: string = 'data:image/PNG;base64,';
 
   constructor(private http: HttpClient, private sanitizer: DomSanitizer) {
   }
 
   electronicDeviceProductsUrl: string = "http://localhost:8082/api/v1/product/get-products-by-category";
-
+  pagingationUrl: string = "http://localhost:8082/api/v1/product/get-product-by-title-and-by-paging-number";
 
   private product: Product | undefined;
 
+  choosePage(i:any){
+    this.products = [];
+    console.log(i)
+    alert(i);
+
+    this.pageOnClick = i.toString();
+    alert("set by click")
+    console.log(this.pageOnClick)
+    alert(this.pageOnClick)
+    // @ts-ignore
+    this.getPageProducts(this.pageOnClick);
+
+    // @ts-ignore
+    localStorage.setItem("pageOnClick", this.pageOnClick);
+  }
+
 
   ngOnInit(): void {
+    let isNotYetClick = "0";
+    localStorage.getItem("pageOnClick");
+    if(localStorage.getItem("pageOnClick") != undefined){
+      // @ts-ignore
+      this.getPageProducts(localStorage.getItem("pageOnClick"));
+    }else{
+      console.log("init method");
+      console.log(isNotYetClick)
+      this.getPageProducts(isNotYetClick);
+    }
+
+  }
+  getPageProducts(pageOnClick: string){
     const categoryRequest = "Electronics Device";
     const httpOptions = {
       headers: new HttpHeaders({'content-type': 'application/json'})
     }
+
+    // pagingation
+    const pageProductRequest = new PageProductRequest(pageOnClick, "Electronics Device");
     // @ts-ignore
-    this.http.post(this.electronicDeviceProductsUrl, categoryRequest, httpOptions).subscribe((res: Product[]) => {
-      console.log(res);
-      console.log(res[0].category);
-      var arr = [];
+    this.http.post(this.pagingationUrl, pageProductRequest, httpOptions).subscribe((res: Product[]) => {
       var list = new Array();
       for (var i = 0; i < res.length; i++) {
         this.imageShow = this.sanitizer.bypassSecurityTrustUrl(this.imageType + res[i].image);
-        console.log(res[i].image);
+        // console.log(res[i].image);
 
         // @ts-ignore
         this.product = new Product(res[i].category, res[i].title, res[i].price, res[i].describe, this.imageShow);
-        console.log(this.product);
+        // console.log(this.product);
         list.push(this.product);
-
-        // @ts-ignore
-        // this.arr.push(this.product);
       }
-      console.log("array list ");
-      console.log(list);
       this.products = list;
-      // console.log(res[0].image)
-      // this.imageShow = this.sanitizer.bypassSecurityTrustUrl(this.imageType + res[0].image);
-      // this.products = this.arr;
-      // @ts-ignore
-      console.log(this.products.at(1).imageId)
-    })
+      console.log(this.products)
+      this.pageSize = Array.from(Array(this.products.length).keys());
+      console.log(this.pageSize)
+    });
   }
-
-
 }

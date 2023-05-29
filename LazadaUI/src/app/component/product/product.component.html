@@ -1,6 +1,8 @@
-<div class="wrapper">
+<div style="z-index: 0" class="wrapper">
+  <br/><br/><br/>
   <div class="product">
     <div><h4>Electronic Device</h4></div>
+    <br/><br/>
     <div class="item  col-sm-3 col-md-3 col-lg-3">
       <ul *ngFor="let item of products">
         <li>
@@ -25,10 +27,20 @@
         </li>
       </ul>
     </div>
+    <div class="pagination">
+      <ul>
+        <li> <a href="#">&laquo;</a></li>
+        <li *ngFor="let i of pageSize">
+          <a href=""(click)="choosePage(i)">{{i+1}}</a>
+        </li>
+        <li> <a href="#">&raquo;</a></li>
+      </ul>
+    </div>
   </div>
-
+  <br/><br/><br/>
   <div class="product">
     <div><h4>Electronic Accessories</h4></div>
+    <br/><br/>
     <div class="item  col-sm-3 col-md-3 col-lg-3">
       <ul>
         <li>
@@ -97,6 +109,27 @@
             <p>Total Orders: 500</p>
           </div>
         </li>
+      </ul>
+    </div>
+    <div class="pagination">
+      <ul>
+        <li> <a href="#">&laquo;</a></li>
+        <li>
+          <a href="">1</a>
+        </li>
+        <li>
+          <a href="">2</a>
+        </li>
+        <li>
+          <a href="">3</a>
+        </li>
+        <li>
+          <a href="">4</a>
+        </li>
+        <li>
+          <a href="">5</a>
+        </li>
+        <li> <a href="#">&raquo;</a></li>
       </ul>
     </div>
   </div>

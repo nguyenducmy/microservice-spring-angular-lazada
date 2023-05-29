@@ -4,7 +4,6 @@
   position: static;
   margin: auto;
   background-color: white;
-  height: 400px;
 }
 #main-banner ul li{
   list-style: none;
@@ -23,7 +22,7 @@
 #banner{
   width: 75%;
   float: left;
-  background-color: deeppink;
+  background-color: white;
   z-index: 0;
 }
 

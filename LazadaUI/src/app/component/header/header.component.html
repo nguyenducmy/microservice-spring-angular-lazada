@@ -8,10 +8,17 @@
 
 
   <div id="sub-header">
-    <ul id="logo-search">
-      <li><a href ="/"><img style="width: 150px" src="assets/images/lazada-logo.png"></a> </li>
-      <li><input style="border-style: hidden;background-color: #eff0f5;border-color: #8B8986;margin-top: 5px; height: 45px;width: 450px" type="search" placeholder="Search in lazada"/></li>
-      <li><button style="background-color: white;border-style: hidden" type="submit"><img style="background-color: transparent;margin-top: 5px;height: 45px;width: 65px" src="/assets/images/search-button.png"></button></li>
-    </ul>
+    <form (ngSubmit)="onSubmit()">
+      <ul id="logo-search">
+        <li><a href ="/"><img style="width: 150px" src="assets/images/lazada-logo.png"></a> </li>
+        <li><input style="position: relative;border-style: hidden;background-color: #eff0f5;border-color: #8B8986;margin-top: 5px; height: 45px;width: 450px" type="text" [(ngModel)]="searchText" name="searchText" placeholder="Search in lazada"/>
+          <ul style="float: left; margin-left: 20px; margin-top: 40px ; z-index: 1" >
+            <li style="list-style: none; float: none;" *ngFor="let item of searchReference">{{item}}</li>
+          </ul>
+        </li>
+        <li ><button style="background-color: white;border-style: hidden" type="submit"><img style="background-color: transparent;margin-top: 5px;height: 45px;width: 65px" src="/assets/images/search-button.png"></button></li>
+      </ul>
+    </form>
+
   </div>
 </div>

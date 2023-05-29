@@ -1,9 +1,13 @@
 package com.example.product.controller;
 
+import com.example.product.dto.PageProductRequest;
 import com.example.product.dto.ProductResponse;
+import com.example.product.dto.UserDto;
 import com.example.product.entity.Product;
+import com.example.product.repository.ProductPaginationRepository;
 import com.example.product.repository.ProductRepository;
 import com.example.product.service.ProductService;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -11,6 +15,8 @@ import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -49,6 +55,9 @@ public class api {
     ProductRepository productRepository;
     @Autowired
     ProductService productService;
+
+    @Autowired
+    ProductPaginationRepository productPaginationRepository;
 
     @GetMapping("/get-products")
     public String getProducts(){
@@ -94,5 +103,34 @@ public class api {
             res.add(productResponse);
         }
         return ResponseEntity.ok(res);
+    }
+    @PostMapping ("/get-product-by-title-and-by-paging-number")
+    public List<ProductResponse> getProductsByTitleAndByPagingNumber(@RequestBody PageProductRequest body) throws IOException {
+        int page = Integer.parseInt(body.getPageId());
+        String category = body.getCategory();
+        Pageable pageWithTwoElements = PageRequest.of(page, 4);
+        List<Product> products = productPaginationRepository.findAllByCategory(category, pageWithTwoElements);
+        List<ProductResponse> res = new ArrayList<>();
+        for (Product i: products){
+            String imageName = i.getImageId();
+            File file = new File("src/main/resources/images/" + imageName);
+            Path path = file.toPath();
+            System.out.println(path.toUri());
+            String encodeImage = Base64.getEncoder().withoutPadding().encodeToString(Files.readAllBytes(path));
+            System.out.println(encodeImage);
+            ProductResponse productResponse = new ProductResponse();
+            productResponse.setCategory(i.getCategory());
+            productResponse.setImage(encodeImage);
+            productResponse.setTitle(i.getTitle());
+            productResponse.setPrice(i.getPrice());
+            productResponse.setDescribe(i.getProductDescribe());
+            res.add(productResponse);
+        }
+        return res;
+    }
+    @PostMapping("/search-by-product-title")
+    public ResponseEntity<List<String>> searchByProductTitle(@RequestBody String productTitleString, HttpServletRequest request){
+        List<String> results = productRepository.searchByProductTitleInputString(productTitleString);
+        return ResponseEntity.ok(results);
     }
 }
