@@ -2,7 +2,6 @@ package com.example.product.controller;
 
 import com.example.product.dto.PageProductRequest;
 import com.example.product.dto.ProductResponse;
-import com.example.product.dto.UserDto;
 import com.example.product.entity.Product;
 import com.example.product.repository.ProductPaginationRepository;
 import com.example.product.repository.ProductRepository;

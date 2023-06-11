@@ -25,7 +25,7 @@ public class api {
     public ResponseEntity<BaseResponse> register(@RequestBody User user) {
         Optional<User> isUser = userRepository.findByUsername(user.getUsername());
         BaseResponse baseResponse = new BaseResponse();
-        if(isUser == null){
+        if(isUser.isEmpty()){
             String password = new BCryptPasswordEncoder().encode(user.getPassword());
             user.setPassword(password);
             userRepository.save(user);

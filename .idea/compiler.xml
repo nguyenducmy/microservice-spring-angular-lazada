@@ -2,12 +2,14 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="notification" />
         <module name="product" />
+        <module name="paper-validate" />
         <module name="authenticate" />
         <module name="discoveryserver" />
         <module name="store" />
@@ -15,13 +17,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="authenticate" target="17" />
-      <module name="discoveryserver" target="17" />
-      <module name="gateway" target="17" />
       <module name="gatewayapi" target="17" />
-      <module name="notification" target="17" />
-      <module name="product" target="17" />
-      <module name="store" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -31,6 +27,7 @@
       <module name="gateway" options="-parameters" />
       <module name="gatewayapi" options="-parameters" />
       <module name="notification" options="-parameters" />
+      <module name="paper-validate" options="-parameters" />
       <module name="product" options="-parameters" />
       <module name="store" options="-parameters" />
     </option>
