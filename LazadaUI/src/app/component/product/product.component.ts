@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {calendar} from "../../../../vendors/moment/moment";
 import {Product} from "../../../models/product";
 import {DomSanitizer, SafeResourceUrl, SafeUrl} from '@angular/platform-browser';
+import {PageProductRequest} from "../../../models/page-product-request";
 
 @Component({
   selector: 'app-product',
@@ -66,7 +67,7 @@ export class ProductComponent implements OnInit {
     }
 
     // pagingation
-    // const pageProductRequest = new PageProductRequest(pageOnClick, "Electronics Device");
+    const pageProductRequest = new PageProductRequest(pageOnClick, "Electronics Device");
     // @ts-ignore
     this.http.post(this.pagingationUrl, pageProductRequest, httpOptions).subscribe((res: Product[]) => {
       var list = new Array();
