@@ -11,7 +11,6 @@ import {LoginComponent} from "./pages/login/login.component";
 import {MainBannerComponent} from './component/main-banner/main-banner.component';
 import {ProductComponent} from './component/product/product.component';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
-import {SignupComponent} from './pages/signup/signup.component';
 import {NgImageSliderModule} from "ng-image-slider";
 
 
@@ -22,8 +21,7 @@ import {NgImageSliderModule} from "ng-image-slider";
     LoginComponent,
     HeaderComponent,
     MainBannerComponent,
-    ProductComponent,
-    SignupComponent
+    ProductComponent
   ],
   imports: [
     AppRoutingModule,
