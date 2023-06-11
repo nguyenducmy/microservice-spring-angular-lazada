@@ -4,12 +4,16 @@ import com.example.authenticate.dto.BaseResponse;
 import com.example.authenticate.dto.UserDto;
 import com.example.authenticate.entity.User;
 import com.example.authenticate.repository.UserRepository;
+import com.example.authenticate.service.EmailService;
 import com.example.authenticate.service.JwtService;
+import freemarker.template.TemplateException;
+import jakarta.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.Optional;
 
 @RestController
@@ -20,15 +24,18 @@ public class api {
     JwtService jwtService;
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    EmailService ems;
 
     @PostMapping("/register")
-    public ResponseEntity<BaseResponse> register(@RequestBody User user) {
+    public ResponseEntity<BaseResponse> register(@RequestBody User user) throws MessagingException, TemplateException, IOException {
         Optional<User> isUser = userRepository.findByUsername(user.getUsername());
         BaseResponse baseResponse = new BaseResponse();
         if(isUser.isEmpty()){
             String password = new BCryptPasswordEncoder().encode(user.getPassword());
             user.setPassword(password);
             userRepository.save(user);
+            ems.send(user.getEmail(), user.getUsername());
             baseResponse.setCode("200");
             baseResponse.setStatus("Register Done");
         }else{
